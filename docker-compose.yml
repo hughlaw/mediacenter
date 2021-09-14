@@ -1,5 +1,9 @@
 ---
 version: "2"
+networks:
+  default:
+    external: true
+    name: bridge
 services:
   nzbget:
     image: ghcr.io/linuxserver/nzbget
