@@ -5,16 +5,32 @@ networks:
     external: true
     name: bridge
 services:
-  nzbget:
-    container_name: nzbget
-    image: hotio/nzbget
-    ports:
-      - "6789:6789"
+  organizr:
+    image: organizr/organizr
+    container_name: organizr
     environment:
       - PUID=1000
       - PGID=1000
       - UMASK=022
-      - TZ=Europe/London
+      - TZ=Europe/Dublin
+      - branch="v2-master"
+      - fpm="false"
+    volumes:
+      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Organizr:/config
+    ports:
+      - 80:80
+    restart: unless-stopped
+
+  nzbget:
+    container_name: nzbget
+    image: hotio/nzbget
+    ports:
+      - 6789:6789
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - TZ=Europe/Dublin
     volumes:
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Nzbget:/config
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/downloads:/downloads
@@ -25,7 +41,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Dublin
     volumes:
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Jackett:/config
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Torrents:/downloads
@@ -39,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
+      - TZ=Europe/Dublin
       - UMASK=022 #optional
     volumes:
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Radarr:/config
@@ -55,8 +71,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      - UMASK_SET=022
+      - TZ=Europe/Dublin
+      - UMASK=022
     volumes:
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Sonarr:/config
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/TV:/tv
