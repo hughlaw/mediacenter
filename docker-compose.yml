@@ -1,9 +1,3 @@
----
-version: "2"
-networks:
-  default:
-    external: true
-    name: bridge
 services:
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
