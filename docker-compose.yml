@@ -18,15 +18,15 @@ services:
     image: fhriley/mediaelch:latest
     container_name: mediaelch
     environment:
-      - PUID=1000
-      - PGID=1000
+      - MEDIAELCH_UID=1000
+      - MEDIAELCH_GID=1000
       - TZ=Europe/Dublin
     volumes:
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Mediaelch:/config
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Movies:/movies
       - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/TV:/tv
     ports:
-      - 5900:5900/tcp
+      - 9876:8000/tcp
     restart: unless-stopped
 
   radarr:
