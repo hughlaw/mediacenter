@@ -22,9 +22,9 @@ services:
       - MEDIAELCH_GID=1000
       - TZ=Europe/Dublin
     volumes:
-      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Mediaelch:/config
-      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Movies:/movies
-      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/TV:/tv
+      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Configs/Mediaelch:/data
+      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/Movies:/media/movies
+      - /srv/dev-disk-by-uuid-d7e92748-af1e-446c-8faa-e23d3ac6f7b8/TV:/media/tv
     ports:
       - 9876:8000/tcp
     restart: unless-stopped
